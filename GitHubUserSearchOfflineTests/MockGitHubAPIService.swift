@@ -22,13 +22,12 @@ final class MockGitHubAPIService: GitHubAPIProtocol {
             throw GitHubAPIService.APIError.userNotFound
         }
         return mockUser ?? User(
+            id: 1,
             login: "mockUser",
-            avatarURL: "https://example.com",
-            name: "Mock User",
+            avatar_url: URL(string: "https://example.com")!,
             bio: "Test bio",
-            publicRepos: 10,
             followers: 100,
-            following: 50
+            public_repos: 10
         )
     }
 
