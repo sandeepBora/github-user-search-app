@@ -2,7 +2,7 @@
 //  SearchHistoryRowView.swift
 //  GitHubUserSearchOffline
 //
-//  Created by M Naveen on 17/07/2025.
+//  Created by B Sandeep on 17/07/2025.
 //
 
 import SwiftUI

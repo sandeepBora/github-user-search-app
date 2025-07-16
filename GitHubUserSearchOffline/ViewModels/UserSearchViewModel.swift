@@ -15,14 +15,21 @@ class UserSearchViewModel: ObservableObject {
     @Published var repos: [Repository] = []
     @Published var error: String?
 
-    private let api = GitHubAPIService()
+    private let gitHubService: GitHubAPIProtocol
     private let history = SearchHistoryLocalRepository()
 
+    /// Initializes the ViewModel with dependencies.
+    /// - Parameters:
+    ///   - gitHubService: Service for interacting with GitHub API.
+    init(gitHubService: GitHubAPIProtocol = GitHubAPIService()) {
+        self.gitHubService = gitHubService
+    }
+    
     func search() async {
         do {
-            let fetchedUser = try await api.fetchUser(username: username)
+            let fetchedUser = try await gitHubService.fetchUser(username: username)
             self.user = fetchedUser
-            self.repos = try await api.fetchRepositories(username: username)
+            self.repos = try await gitHubService.fetchRepositories(username: username)
             history.save(user: fetchedUser)
             self.error = nil
         } catch {

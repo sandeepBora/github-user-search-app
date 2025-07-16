@@ -13,11 +13,11 @@ final class FavoritesViewModel: ObservableObject {
     /// Published list of favorite users.
     @Published var favorites: [SearchedUser] = []
 
-    private let repository: FavoritesLocalRepository
+    private let repository: FavoritesRepositoryProtocol
 
     /// Initializes the ViewModel with a favorites repository.
     /// - Parameter repository: Repository responsible for favorite persistence. Defaults to a new instance.
-    init(repository: FavoritesLocalRepository = FavoritesLocalRepository()) {
+    init(repository: FavoritesRepositoryProtocol = FavoritesLocalRepository()) {
         self.repository = repository
         fetchFavorites()
     }

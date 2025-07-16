@@ -8,8 +8,14 @@
 import Foundation
 import CoreData
 
+protocol FavoritesRepositoryProtocol {
+    func fetchFavorites() -> [SearchedUser]
+    func saveFavorite(login: String, avatarURL: String)
+    func removeFavorite(login: String)
+}
+
 /// Repository for managing favorite users in Core Data.
-final class FavoritesLocalRepository {
+final class FavoritesLocalRepository: FavoritesRepositoryProtocol {
     private let context: NSManagedObjectContext
 
     /// Initializes the repository with the given Core Data context.
