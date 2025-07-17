@@ -56,19 +56,22 @@ struct UserSearchView: View {
 
     /// The search button
     private var searchButton: some View {
-        Button(AppStrings.searchButton) {
+        Button(action: {
             Task {
                 isLoading = true
                 await vm.search()
                 isLoading = false
             }
+        }) {
+            Text(AppStrings.searchButton)
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .frame(height: AppMetrics.buttonHeight)
+                .background(AppColor.primary)
+                .foregroundColor(.white)
+                .cornerRadius(AppMetrics.cardCornerRadius)
+                .contentShape(Rectangle())
         }
-        .font(.headline)
-        .frame(maxWidth: .infinity)
-        .frame(height: AppMetrics.buttonHeight)
-        .background(AppColor.primary)
-        .foregroundColor(.white)
-        .cornerRadius(AppMetrics.cardCornerRadius)
         .padding(.horizontal)
     }
 
